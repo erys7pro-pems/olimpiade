@@ -103,7 +103,8 @@ footer{text-align:center;font-size:12px;color:var(--text-faint);padding-top:1rem
 .side-nav-link{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--text-muted);font-size:12px;font-weight:500;white-space:nowrap;transition:background .15s,color .15s}
 .side-nav-link:hover{background:var(--surface-2);color:var(--text)}
 .side-nav-link.active{background:var(--purple-light);color:var(--purple-dark);font-weight:600}
-.side-nav-num{display:flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--surface-2);color:var(--text-muted);font-size:11px;font-weight:600;transition:background .3s,color .3s,box-shadow .3s}
+.side-nav-ring{width:26px;height:26px;min-width:26px;border-radius:50%;padding:3px;background:conic-gradient(var(--surface-2) 0deg 360deg);transition:background .35s ease}
+.side-nav-num{display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;background:var(--surface);color:var(--text-muted);font-size:11px;font-weight:600}
 .side-nav-label{max-width:130px;overflow:hidden;text-overflow:ellipsis}
 
 @media(max-width:900px){
@@ -124,10 +125,10 @@ footer{text-align:center;font-size:12px;color:var(--text-faint);padding-top:1rem
 </header>
 
 <nav class="side-nav" id="sideNav">
-  <a class="side-nav-link" href="#topik1" data-target="topik1"><span class="side-nav-num" id="navNum-topik1">1</span><span class="side-nav-label">Tissue-on-a-Chip</span></a>
-  <a class="side-nav-link" href="#topik2" data-target="topik2"><span class="side-nav-num" id="navNum-topik2">2</span><span class="side-nav-label">Ekspresi Gen</span></a>
-  <a class="side-nav-link" href="#topik3" data-target="topik3"><span class="side-nav-num" id="navNum-topik3">3</span><span class="side-nav-label">MAP Kinase Oosit</span></a>
-  <a class="side-nav-link" href="#topik4" data-target="topik4"><span class="side-nav-num" id="navNum-topik4">4</span><span class="side-nav-label">MBT Bulu Babi</span></a>
+  <a class="side-nav-link" href="#topik1" data-target="topik1"><span class="side-nav-ring" id="navRing-topik1"><span class="side-nav-num" id="navNum-topik1">1</span></span><span class="side-nav-label">Tissue-on-a-Chip</span></a>
+  <a class="side-nav-link" href="#topik2" data-target="topik2"><span class="side-nav-ring" id="navRing-topik2"><span class="side-nav-num" id="navNum-topik2">2</span></span><span class="side-nav-label">Ekspresi Gen</span></a>
+  <a class="side-nav-link" href="#topik3" data-target="topik3"><span class="side-nav-ring" id="navRing-topik3"><span class="side-nav-num" id="navNum-topik3">3</span></span><span class="side-nav-label">MAP Kinase Oosit</span></a>
+  <a class="side-nav-link" href="#topik4" data-target="topik4"><span class="side-nav-ring" id="navRing-topik4"><span class="side-nav-num" id="navNum-topik4">4</span></span><span class="side-nav-label">MBT Bulu Babi</span></a>
 </nav>
 
 <main>
@@ -679,7 +680,7 @@ function answer2(q, choice, isCorrect, btn) {
     });
   }
   answered2++;
-  updateNavScore('topik2', score2, answered2);
+  updateNavScore('topik2', q, isCorrect);
   if (answered2 === 4) {
     const banner = document.getElementById('scoreBanner2');
     document.getElementById('scoreNum2').textContent = score2 + '/4';
@@ -750,7 +751,7 @@ function answer3(q, choice, isCorrect, btn) {
     });
   }
   answered3++;
-  updateNavScore('topik3', score3, answered3);
+  updateNavScore('topik3', q, isCorrect);
   if (answered3 === 4) {
     const banner = document.getElementById('scoreBanner3');
     document.getElementById('scoreNum3').textContent = score3 + '/4';
@@ -821,7 +822,7 @@ function answer4(q, choice, isCorrect, btn) {
     });
   }
   answered4++;
-  updateNavScore('topik4', score4, answered4);
+  updateNavScore('topik4', q, isCorrect);
   if (answered4 === 4) {
     const banner = document.getElementById('scoreBanner4');
     document.getElementById('scoreNum4').textContent = score4 + '/4';
@@ -871,7 +872,7 @@ function answer(q, choice, isCorrect, btn) {
     });
   }
   answered++;
-  updateNavScore('topik1', score, answered);
+  updateNavScore('topik1', q, isCorrect);
   if (answered === 4) {
     const banner = document.getElementById('scoreBanner');
     document.getElementById('scoreNum').textContent = score + '/4';
@@ -903,23 +904,44 @@ function switchTab(id, btn) {
   setActive(sections[0].id);
 })();
 
-function updateNavScore(topicId, correct, total) {
-  const el = document.getElementById('navNum-' + topicId);
-  if (!el) return;
-  if (total === 0) {
-    el.style.background = '';
-    el.style.color = '';
-    el.style.boxShadow = '';
-    return;
-  }
-  const ratio = correct / total;
-  const c1 = [0xC9, 0x4B, 0x2B];
-  const c2 = [0x0E, 0x8A, 0x6F];
-  const rgb = c1.map((v, i) => Math.round(v + (c2[i] - v) * ratio));
-  el.style.background = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
-  el.style.color = '#fff';
-  el.style.boxShadow = `0 0 0 3px rgba(${rgb[0]},${rgb[1]},${rgb[2]},.28)`;
+const navRingState = {
+  topik1: {a:null, b:null, c:null, d:null},
+  topik2: {a:null, b:null, c:null, d:null},
+  topik3: {a:null, b:null, c:null, d:null},
+  topik4: {a:null, b:null, c:null, d:null}
+};
+
+function updateNavScore(topicId, qKey, isCorrect) {
+  const state = navRingState[topicId];
+  if (!state) return;
+  const letter = qKey.charAt(0);
+  state[letter] = isCorrect;
+
+  const ring = document.getElementById('navRing-' + topicId);
+  if (!ring) return;
+
+  const unansweredColor = 'var(--surface-2)';
+  const correctColor = 'var(--teal)';
+  const wrongColor = 'var(--red)';
+  const borderColor = 'var(--border)';
+  const letters = ['a','b','c','d'];
+  const gap = 6;
+
+  const parts = [`${borderColor} 0deg ${gap / 2}deg`];
+  letters.forEach((l, i) => {
+    const color = state[l] === true ? correctColor : (state[l] === false ? wrongColor : unansweredColor);
+    const segStart = i * 90 + gap / 2;
+    const segEnd = (i + 1) * 90 - gap / 2;
+    parts.push(`${color} ${segStart}deg ${segEnd}deg`);
+    if (i < letters.length - 1) {
+      parts.push(`${borderColor} ${segEnd}deg ${segEnd + gap}deg`);
+    }
+  });
+  parts.push(`${borderColor} ${360 - gap / 2}deg 360deg`);
+
+  ring.style.background = `conic-gradient(${parts.join(', ')})`;
 }
+
 </script>
 </body>
 </html>
