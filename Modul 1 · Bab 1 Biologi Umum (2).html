@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modul 1 · Bab 1 Biologi Umum</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600&family=Sora:wght@500;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f2f7f5;--surf:#fff;--ink:#12302b;--mut:#4d6b65;--line:#cfe0db;--pri:#0f766e;--pri-ink:#fff;--acc:#e3a82b;--ok:#157347;--okbg:#e2f4ea;--bad:#b3261e;--badbg:#fbe9e7;--lock:#9db3ad}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1b19;--surf:#152826;--ink:#e6f2ef;--mut:#9bb8b1;--line:#27423e;--pri:#3fc1b3;--pri-ink:#062320;--acc:#f0b93e;--ok:#6fdc9c;--okbg:#14382a;--bad:#ff9a90;--badbg:#3d1d1a;--lock:#4a645f}}
+:root[data-theme="dark"]{--bg:#0e1b19;--surf:#152826;--ink:#e6f2ef;--mut:#9bb8b1;--line:#27423e;--pri:#3fc1b3;--pri-ink:#062320;--acc:#f0b93e;--ok:#6fdc9c;--okbg:#14382a;--bad:#ff9a90;--badbg:#3d1d1a;--lock:#4a645f}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Literata,Georgia,serif}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 16px 48px}
+h1,h2,h3,button,.chip{font-family:Sora,system-ui,sans-serif}
+h1{font-size:1.35rem;margin:0 0 2px;line-height:1.25}
+.sub{color:var(--mut);font-size:.9rem;margin:0 0 14px}
+.bar{height:12px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pri),var(--acc));border-radius:99px;transition:width .35s}
+.pct{display:flex;justify-content:space-between;font-size:.82rem;color:var(--mut);margin:6px 0 14px}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.chip{border:2px solid var(--line);background:var(--surf);color:var(--ink);border-radius:12px;padding:8px 4px;font-size:.78rem;font-weight:700;cursor:pointer;text-align:center}
+.chip small{display:block;font-weight:500;color:var(--mut);font-size:.68rem}
+.chip.cur{border-color:var(--pri)}
+.chip.done{background:var(--okbg);border-color:var(--ok)}
+.chip.lock{color:var(--lock);cursor:not-allowed;background:transparent;border-style:dashed}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:22px 20px;min-height:260px}
+.card h2{font-size:1.15rem;margin:0 0 10px;line-height:1.3}
+.card p{margin:0 0 10px}
+.tag{display:inline-block;background:var(--acc);color:#2a1d00;border-radius:6px;padding:1px 8px;font:700 .75rem Sora,sans-serif;margin-bottom:10px}
+.kw{background:color-mix(in srgb,var(--acc) 30%,transparent);border-radius:4px;padding:0 3px}
+ul.l{padding-left:20px;margin:6px 0}
+.opts{display:grid;gap:10px;margin-top:12px}
+.opt{text-align:left;font:inherit;font-size:.98rem;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;line-height:1.4}
+.opt:focus-visible,.btn:focus-visible,.chip:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg);opacity:.8}
+.fb{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:.93rem}
+.fb.ok{background:var(--okbg)}.fb.bad{background:var(--badbg)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+.btn{font-size:.95rem;font-weight:700;border:0;border-radius:12px;padding:12px 20px;cursor:pointer;background:var(--pri);color:var(--pri-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.dots{display:flex;gap:6px;justify-content:center}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--pri)}
+.foot{text-align:center;margin-top:26px}
+.foot button{background:none;border:0;color:var(--mut);text-decoration:underline;font-size:.8rem;cursor:pointer}
+.end{text-align:center}
+.end .big{font-size:2.6rem}
+.pdflink{display:inline-block;margin:0 0 14px;font:700 .85rem Sora,system-ui,sans-serif;color:var(--pri);text-decoration:none;border:2px solid var(--line);border-radius:10px;padding:6px 12px;background:var(--surf)}
+.pdflink:focus-visible,.rdbar a:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+#pdfview{padding:0 12px}
+.rd{max-width:1400px;margin:0 auto;height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;padding:12px 0}
+.rdbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:8px 12px;font-family:Sora,system-ui,sans-serif}
+.rdbar a{color:var(--pri);font-weight:700;text-decoration:none;font-size:.88rem}
+.rdt{flex:1;min-width:0;color:var(--mut);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rdact{display:flex;align-items:center;gap:12px;margin-left:auto}
+.rdact .btn{padding:8px 14px;font-size:.85rem}
+.rd iframe{flex:1;min-height:0;width:100%;border:0;border-radius:14px;background:var(--surf)}
+.rdnote{margin:0;font-size:.78rem;color:var(--mut);text-align:center}
+.rd.fs{position:fixed;inset:0;z-index:50;max-width:none;height:auto;background:var(--bg);padding:calc(8px + env(safe-area-inset-top,0px)) 8px calc(8px + env(safe-area-inset-bottom,0px))}
+.rd:fullscreen{max-width:none;height:100%;background:var(--bg);padding:8px}
+.rd.fs .rdnote,.rd:fullscreen .rdnote{display:none}
+@media (max-width:640px){.rdt{display:none}}
+@media (prefers-reduced-motion:reduce){.bar>i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap" id="modview">
+  <h1>Bab 1 · Evolusi, Tema Biologi, dan Inkuiri Ilmiah</h1>
+  <p class="sub">Modul 1 · Biologi Umum. Selesaikan tiap bab untuk membuka bab berikutnya.</p>
+  <a class="pdflink" href="#pdf">📖 Baca PDF asli</a>
+  <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="pb"><i id="pbi"></i></div>
+  <div class="pct"><span id="pl">0% selesai</span><span id="ps"></span></div>
+  <div class="chips" id="chips"></div>
+  <main id="stage"></main>
+  <div class="foot"><button id="reset">Mulai dari awal</button></div>
+</div>
+<section id="pdfview" hidden>
+  <div class="rd" id="rd">
+    <div class="rdbar">
+      <a href="#modul">← Kembali ke modul</a>
+      <span class="rdt">PDF asli · Campbell Bab 1</span>
+      <span class="rdact"><a href="https://drive.google.com/file/d/1MR5EiIagXqXzVeU13cGs0oHGj_sPHoYd/view" target="_blank" rel="noopener">Buka di Drive</a><button class="btn" id="fsb">Layar penuh</button></span>
+    </div>
+    <iframe id="pdff" title="PDF asli Bab 1"></iframe>
+    <p class="rdnote">PDF tidak tampil? Pastikan file Drive dibagikan ke “Siapa saja yang memiliki link”, atau buka lewat “Buka di Drive”.</p>
+  </div>
+</section>
+<script>
+var CH=[
+{n:"1.1",t:"Tema pemersatu biologi",
+cards:[
+{h:"Apa itu kehidupan?",b:"<p>Kehidupan sulit didefinisikan dengan satu kalimat. Kita mengenalinya lewat apa yang dilakukan makhluk hidup: teratur, memproses energi, mengatur diri, bereproduksi, tumbuh dan berkembang, merespons lingkungan, dan beradaptasi lewat evolusi.</p><p>Agar banyaknya informasi biologi tidak membingungkan, kita pakai <b>lima tema besar</b>:</p><ul class='l'><li><span class='kw'>Organisasi</span></li><li><span class='kw'>Informasi</span></li><li><span class='kw'>Energi dan materi</span></li><li><span class='kw'>Interaksi</span></li><li><span class='kw'>Evolusi</span></li></ul>"},
+{h:"Organisasi: dari biosfer sampai molekul",b:"<p>Kehidupan tersusun berjenjang: biosfer → ekosistem → komunitas → populasi → organisme → organ → jaringan → sel → organel → molekul.</p><p>Setiap naik satu tingkat, muncul <span class='kw'>sifat emergen</span>, yaitu sifat baru yang lahir dari susunan dan interaksi bagian-bagiannya. Contoh: fotosintesis tidak berjalan jika klorofil dan molekul kloroplas hanya dicampur di tabung reaksi. Susunannya di dalam kloroplas yang menentukan.</p><p><b>Reduksionisme</b> memecah sistem rumit jadi bagian sederhana. <b>Biologi sistem</b> melengkapinya dengan mempelajari interaksi antarbagian.</p>"},
+{h:"Struktur, fungsi, dan sel",b:"<p>Bentuk berkaitan dengan fungsi di semua tingkat. Daun yang lebar dan pipih memaksimalkan tangkapan cahaya. Sayap kolibri yang bisa berputar di bahu memungkinkannya melayang.</p><p>Sel adalah unit terkecil yang mampu melakukan semua aktivitas kehidupan. Ada dua jenis:</p><ul class='l'><li><b>Prokariotik</b> (bakteri dan archaea): tanpa inti dan organel berselaput, ukuran lebih kecil.</li><li><b>Eukariotik</b> (tumbuhan, hewan, fungi, protista): punya inti dan organel berselaput.</li></ul>"},
+{h:"Informasi: DNA dan ekspresi gen",b:"<p>DNA tersusun dari dua untai berbentuk heliks ganda. Setiap untai dibangun empat nukleotida: <b>A, T, C, G</b>. Urutannya seperti alfabet berhuruf empat yang menyandikan informasi.</p><p>Gen adalah potongan DNA. Pada banyak gen, urutannya menjadi cetak biru protein lewat jalur: <span class='kw'>DNA → (transkripsi) mRNA → (translasi) protein</span>. Seluruh proses ini disebut <b>ekspresi gen</b>.</p><p>Kode genetiknya hampir sama di semua makhluk hidup, dan ini bukti kuat bahwa seluruh kehidupan berkerabat. Seluruh set DNA suatu organisme disebut <b>genom</b>; mempelajarinya secara besar-besaran disebut <b>genomika</b>.</p>"},
+{h:"Energi dan materi",b:"<p>Bergerak, tumbuh, dan bereproduksi itu kerja, dan kerja butuh energi. Produsen (misalnya tumbuhan) mengubah energi cahaya matahari menjadi energi kimia, lalu diteruskan ke konsumen.</p><ul class='l'><li><b>Energi mengalir satu arah</b>: masuk sebagai cahaya, keluar sebagai panas.</li><li><b>Materi berdaur</b>: zat kimia dipakai, lalu dikembalikan ke tanah dan udara oleh pengurai seperti bakteri dan fungi.</li></ul>"},
+{h:"Interaksi",b:"<p>Di semua tingkat, interaksi antarkomponen membuat sistem bekerja utuh.</p><ul class='l'><li><b>Umpan balik negatif</b>: hasil proses menekan proses itu sendiri. Contoh: gula darah naik → pankreas keluarkan insulin → gula darah turun → insulin berhenti.</li><li><b>Umpan balik positif</b>: hasil proses mempercepat proses itu. Contoh: trombosit menarik trombosit lain saat darah membeku.</li></ul><p>Antarmakhluk hidup, interaksi bisa saling menguntungkan, satu pihak dirugikan (predasi), atau kedua pihak dirugikan (rebutan sumber daya). Aktivitas manusia, seperti pembakaran bahan bakar fosil, ikut mengubah iklim dan habitat.</p>"}],
+quiz:[
+{q:"Semua organisme di lingkungan kampusmu secara bersama-sama membentuk...",o:["Ekosistem","Komunitas","Populasi","Domain taksonomi"],a:1,e:"Komunitas adalah kumpulan berbagai populasi yang menghuni suatu area. Ekosistem juga memasukkan komponen tak hidup."},
+{q:"Gula darah naik, insulin keluar, gula darah turun, lalu sekresi insulin berhenti. Ini contoh...",o:["Umpan balik positif","Umpan balik negatif","Ekspresi gen","Sifat emergen"],a:1,e:"Respons (gula darah turun) mengurangi rangsangan awal. Itulah ciri umpan balik negatif."},
+{q:"Klorofil yang hanya dicampur di tabung reaksi tidak berfotosintesis. Prinsip apa yang diilustrasikan?",o:["Energi mengalir satu arah","Kode genetik bersifat universal","Sifat emergen muncul dari susunan bagian","Prokariot tidak punya organel"],a:2,e:"Fotosintesis butuh susunan molekul yang tepat di dalam kloroplas, bukan sekadar kumpulan molekulnya."}]},
+{n:"1.2",t:"Evolusi: tema inti",
+cards:[
+{h:"Satu tema yang menjelaskan keragaman dan kesatuan",b:"<p>Evolusi adalah perubahan biologis ketika spesies mengumpulkan perbedaan dari leluhurnya seiring adaptasi terhadap lingkungan. Perbedaan antarspesies (<b>keragaman</b>) muncul setelah garis keturunan bercabang. Kesamaan (<b>kesatuan</b>) ada karena berasal dari leluhur yang sama.</p><p>Contoh kesatuan: kuda laut, kelinci, kolibri, dan jerapah tampak berbeda, tetapi susunan dasar kerangkanya sama.</p>"},
+{h:"Mengelompokkan keragaman hayati",b:"<p>Sekitar 1,8 juta spesies sudah diberi nama, dan perkiraan jumlah seluruhnya 10 juta sampai lebih dari 100 juta. Nama spesies terdiri dari dua bagian: genus lalu epitet spesies (misalnya <i>Homo sapiens</i>).</p><p>Semua makhluk hidup dikelompokkan ke dalam <span class='kw'>tiga domain</span>:</p><ul class='l'><li><b>Bacteria</b> dan <b>Archaea</b>: prokariot bersel tunggal.</li><li><b>Eukarya</b>: semua eukariot, yaitu Plantae, Fungi, Animalia, dan protista.</li></ul>"},
+{h:"Darwin dan seleksi alam",b:"<p>Pada 1859, Charles Darwin menerbitkan <i>On the Origin of Species</i> dengan dua gagasan: spesies mengumpulkan perbedaan dari leluhurnya (<b>descent with modification</b>), dan <b>seleksi alam</b> adalah penyebab utamanya.</p><p>Tiga pengamatannya:</p><ul class='l'><li>Individu dalam populasi bervariasi, dan banyak sifat itu diwariskan.</li><li>Keturunan yang dihasilkan jauh lebih banyak daripada yang bisa bertahan, sehingga terjadi persaingan.</li><li>Spesies umumnya cocok dengan lingkungannya.</li></ul><p>Kesimpulannya: individu dengan sifat yang lebih cocok lebih mungkin bertahan dan bereproduksi. Setelah banyak generasi, sifat itu makin sering muncul di populasi.</p>"},
+{h:"Pohon kehidupan",b:"<p>Bukti kekerabatan terlihat di struktur homolog. Sayap kelelawar, lengan manusia, kaki depan kuda, dan sirip paus punya susunan tulang yang mirip karena diwarisi dari leluhur mamalia yang sama, lalu dimodifikasi seleksi alam.</p><p>Burung finch Galápagos berasal dari satu spesies leluhur. Populasi di pulau berbeda beradaptasi pada makanan berbeda sehingga paruhnya beragam. Hubungan seperti ini digambarkan sebagai pohon: dua spesies yang mirip berbagi leluhur bersama yang relatif baru.</p>"}],
+quiz:[
+{q:"Kode genetik yang pada dasarnya sama di semua organisme paling baik menunjukkan...",o:["Semua spesies punya jumlah gen sama","Kehidupan berkerabat dan punya leluhur bersama","Seleksi alam tidak terjadi","Prokariot lebih maju dari eukariot"],a:1,e:"Kode yang universal adalah bukti kesatuan: semua kehidupan terhubung lewat sejarah evolusi yang panjang."},
+{q:"Setelah seleksi alam berlangsung selama banyak generasi, apa yang berubah pada populasi?",o:["Setiap individu berubah sifatnya sesuai kebutuhan","Proporsi individu dengan sifat menguntungkan meningkat","Jumlah keturunan per individu menurun","Variasi sifat hilang total pada generasi pertama"],a:1,e:"Seleksi bekerja pada variasi yang sudah ada dan diwariskan. Individu tidak berubah; komposisi populasinya yang bergeser."}]},
+{n:"1.3",t:"Hipotesis dan uji",
+cards:[
+{h:"Inkuiri: mengamati lalu menalar",b:"<p>Inti sains adalah <b>inkuiri</b>, yaitu pencarian informasi dan penjelasan tentang fenomena alam. Tidak ada satu “metode ilmiah” yang harus diikuti kaku, dan prosesnya berulang: pengujian memunculkan pengamatan baru yang bisa merevisi hipotesis.</p><ul class='l'><li><b>Data</b> adalah pengamatan yang tercatat. <b>Kualitatif</b>: deskripsi. <b>Kuantitatif</b>: angka, sering disajikan dalam tabel dan grafik.</li><li><b>Penalaran induktif</b>: menarik generalisasi dari banyak pengamatan khusus (“semua organisme tersusun dari sel”).</li><li><b>Penalaran deduktif</b>: dari premis umum ke prediksi khusus dengan logika “jika... maka...”.</li></ul>"},
+{h:"Hipotesis yang baik",b:"<p>Hipotesis adalah penjelasan yang berdasar pengamatan dan menghasilkan <span class='kw'>prediksi yang dapat diuji</span>. Contoh: lampu meja mati. Hipotesis 1: bohlam putus. Prediksi: ganti bohlam, lampu menyala.</p><ul class='l'><li>Hipotesis tidak pernah bisa dibuktikan benar mutlak. Pengujian hanya mendukungnya dengan gagal menyangkalnya.</li><li>Selalu ada hipotesis lain yang bisa diajukan, dan tidak semuanya bisa diuji.</li><li>Hipotesis harus testable. Penjelasan supranatural (misalnya hantu mengganggu lampu) di luar jangkauan sains.</li></ul>"},
+{h:"Studi kasus: warna bulu tikus",b:"<p>Tikus pantai (bulu terang) hidup di pasir putih, sedangkan tikus daratan (bulu gelap) hidup di tanah gelap. Hipotesis: warna bulu adalah adaptasi kamuflase terhadap predator.</p><p>Pada 2010, Hopi Hoekstra dan timnya membuat model tikus dari bahan yang dicat terang atau gelap, menaruhnya di kedua habitat, lalu menghitung serangan predator keesokan harinya.</p><ul class='l'><li><b>Kontrol</b>: model yang warnanya cocok dengan habitat.</li><li><b>Eksperimen</b>: model dengan warna tidak cocok.</li><li><b>Variabel bebas</b>: warna model. <b>Variabel terikat</b>: tingkat serangan.</li></ul><p>Hasil: model tanpa kamuflase jauh lebih sering diserang di kedua habitat, sehingga hipotesis kamuflase didukung.</p>"},
+{h:"Hipotesis vs teori",b:"<p>Dalam sains, <b>teori</b> bukan tebakan. Dibanding hipotesis, teori:</p><ul class='l'><li>jauh lebih <b>luas cakupannya</b> (“adaptasi evolusioner muncul lewat seleksi alam” vs “warna bulu tikus ini adaptasi”),</li><li>cukup umum untuk <b>melahirkan banyak hipotesis baru</b> yang bisa diuji,</li><li>didukung <b>bukti yang jauh lebih banyak</b>.</li></ul><p>Hasil sains terus diperiksa lewat replikasi. Teori yang sudah mapan pun bisa direvisi bila bukti baru konsisten tidak cocok.</p>"}],
+quiz:[
+{q:"Manakah contoh data kualitatif?",o:["Suhu turun dari 20°C ke 15°C","Rata-rata enam pasang burung menetaskan tiga anak","Ikan berenang dengan gerakan zigzag","Isi lambung diaduk tiap 20 detik"],a:2,e:"Data kualitatif berupa deskripsi, bukan pengukuran angka."},
+{q:"Pada eksperimen model tikus, apa variabel bebasnya?",o:["Jumlah serangan predator","Warna model tikus","Jenis predator","Waktu pengamatan"],a:1,e:"Warna adalah faktor yang dimanipulasi peneliti. Jumlah serangan adalah variabel terikat yang diukur."},
+{q:"Pernyataan mana yang paling tepat membedakan hipotesis dan teori?",o:["Teori adalah hipotesis yang sudah terbukti","Hipotesis hanya tebakan, teori pasti benar","Hipotesis biasanya sempit, teori punya daya jelas yang luas","Teori tidak pernah bisa diubah"],a:2,e:"Teori berskala luas, melahirkan banyak hipotesis, dan punya bukti sangat banyak, tetapi tetap bisa direvisi."}]},
+{n:"1.4",t:"Kerja sama dalam sains",
+cards:[
+{h:"Sains adalah kegiatan sosial",b:"<p>Berbeda dari gambaran ilmuwan yang bekerja sendirian, sains umumnya dikerjakan tim. Hasil penelitian baru berdampak setelah dibagikan lewat seminar, publikasi, dan situs web, dan makalah baru terbit setelah ditelaah rekan sejawat (<b>peer review</b>).</p><ul class='l'><li>Ilmuwan membangun karya pendahulunya.</li><li>Temuan diperiksa lewat <b>replikasi</b>; sains “mengawasi dirinya sendiri”.</li><li><b>Organisme model</b> (lalat buah <i>Drosophila</i>, mencit, zebrafish, <i>E. coli</i>) memudahkan kerja sama karena mudah dipelihara dan hasilnya relevan bagi spesies lain.</li><li>Satu masalah bisa didekati dari banyak tingkat biologi, dan pendekatan itu saling melengkapi.</li></ul>"},
+{h:"Sains, teknologi, dan masyarakat",b:"<p>Tujuan <b>sains</b> adalah memahami fenomena alam. Tujuan <b>teknologi</b> adalah menerapkan pengetahuan ilmiah untuk kebutuhan tertentu. Keduanya saling bergantung.</p><p>Temuan struktur DNA (1953) melahirkan teknologi DNA yang mengubah kedokteran, pertanian, dan forensik. Pertanyaan teknologi lebih sering berbunyi “<i>should we do it</i>?” daripada “<i>can we do it</i>?”. Misalnya: siapa boleh mengakses hasil tes genetik seseorang? Semua warga, bukan hanya ilmuwan, perlu paham cara kerja sains dan risiko teknologinya.</p>"},
+{h:"Nilai keragaman sudut pandang",b:"<p>Banyak inovasi besar lahir di jalur perdagangan tempat berbagai budaya bertemu. Mesin cetak Gutenberg, misalnya, memakai kertas dan tinta dari Tiongkok yang dimodifikasi di Eropa.</p><p>Sains pun diuntungkan oleh keragaman latar belakang para ilmuwannya. Perempuan dan banyak kelompok ras serta etnis masih kurang terwakili di banyak bidang sains dan teknologi, dan kekurangan ini menghambat kemajuan. Makin banyak suara yang didengar, makin kuat dan produktif pertukaran ilmiahnya.</p>"}],
+quiz:[
+{q:"Apa perbedaan utama sains dan teknologi?",o:["Sains menerapkan pengetahuan, teknologi memahami alam","Sains memahami fenomena alam, teknologi menerapkan pengetahuan untuk tujuan tertentu","Keduanya tidak saling terkait","Teknologi tidak melibatkan masyarakat"],a:1,e:"Tujuan sains adalah memahami; tujuan teknologi adalah menerapkan. Keduanya saling bergantung."},
+{q:"Mengapa keragaman latar belakang ilmuwan penting bagi sains?",o:["Agar jumlah publikasi lebih banyak saja","Karena lebih banyak sudut pandang membuat pertukaran ilmiah lebih kuat dan produktif","Agar tidak perlu peer review","Karena sains hanya soal budaya"],a:1,e:"Ide baru sering muncul dari pertemuan perspektif berbeda, dan keragaman memperluas pertanyaan serta pendekatan yang dicoba."}]}
+];
+var KEY="modul1-bab1-v1",S={unlocked:0,cur:0,steps:[0,0,0,0]};
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&p.steps&&p.steps.length===4)S=p}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function total(c){return c.cards.length+c.quiz.length}
+function $(i){return document.getElementById(i)}
+function done(i){return S.steps[i]>=total(CH[i])}
+var answered=false;
+function render(){
+  var all=0,got=0;CH.forEach(function(c,i){all+=total(c);got+=Math.min(S.steps[i],total(c))});
+  var pc=Math.round(got/all*100);
+  $("pbi").style.width=pc+"%";$("pb").setAttribute("aria-valuenow",pc);$("pl").textContent=pc+"% selesai";
+  var nd=CH.filter(function(c,i){return done(i)}).length;$("ps").textContent=nd+" dari "+CH.length+" bab";
+  var h="";CH.forEach(function(c,i){
+    var st=i>S.unlocked?"lock":done(i)?"done":i===S.cur?"cur":"";
+    h+='<button class="chip '+st+'" data-i="'+i+'" '+(i>S.unlocked?'aria-disabled="true" title="Selesaikan bab sebelumnya"':'')+'>'+(i>S.unlocked?"🔒":done(i)?"✓":c.n)+'<small>'+c.n+'</small></button>';
+  });
+  $("chips").innerHTML=h;
+  var c=CH[S.cur],s=S.steps[S.cur],nc=c.cards.length,n=total(c),out="";
+  if(s>=n){
+    var last=S.cur===CH.length-1;
+    out='<div class="card end"><div class="big">'+(last?"🎉":"🌱")+'</div><h2>'+(last?"Modul 1 selesai!":"Bab "+c.n+" selesai")+'</h2><p>'+(last?"Kamu sudah menyelesaikan seluruh Bab 1. Modul 2 menyusul.":"Bab berikutnya sudah terbuka.")+'</p></div><div class="nav"><button class="btn ghost" id="rev">Ulangi bab ini</button>'+(last?"":'<button class="btn" id="nextch">Lanjut ke bab '+CH[S.cur+1].n+'</button>')+'</div>';
+  }else if(s<nc){
+    var k=c.cards[s];
+    out='<div class="card"><span class="tag">Bab '+c.n+' · '+c.t+'</span><h2>'+k.h+'</h2>'+k.b+'</div>';
+    out+=nav(s,n,true);
+  }else{
+    var q=c.quiz[s-nc];answered=false;
+    out='<div class="card"><span class="tag">Cek pemahaman '+(s-nc+1)+'/'+c.quiz.length+'</span><h2>'+q.q+'</h2><div class="opts">';
+    q.o.forEach(function(o,j){out+='<button class="opt" data-j="'+j+'">'+o+'</button>'});
+    out+='</div><div id="fb" aria-live="polite"></div></div>'+nav(s,n,false);
+  }
+  $("stage").innerHTML=out;
+}
+function nav(s,n,ok){
+  var d="";for(var i=0;i<n;i++)d+='<i class="'+(i<=s?"on":"")+'"></i>';
+  return '<div class="nav"><button class="btn ghost" id="prev"'+(s===0?" disabled":"")+'>Kembali</button><div class="dots">'+d+'</div><button class="btn" id="next"'+(ok?"":" disabled")+'>'+(s===n-1?"Selesai":"Lanjut")+'</button></div>';
+}
+function advance(){
+  var i=S.cur,n=total(CH[i]);
+  if(S.steps[i]<n)S.steps[i]++;
+  if(S.steps[i]>=n&&S.unlocked<i+1&&i+1<CH.length)S.unlocked=i+1;
+  save();render();window.scrollTo(0,0);
+}
+document.addEventListener("click",function(e){
+  var t=e.target.closest("button");if(!t)return;
+  if(t.classList.contains("chip")){var i=+t.dataset.i;if(i<=S.unlocked){S.cur=i;save();render()}return}
+  if(t.id==="next"&&!t.disabled){advance()}
+  else if(t.id==="prev"&&!t.disabled){var c=CH[S.cur];if(S.steps[S.cur]>0&&S.steps[S.cur]<total(c)){S.steps[S.cur]--;save();render()}}
+  else if(t.id==="nextch"){S.cur++;save();render();window.scrollTo(0,0)}
+  else if(t.id==="rev"){S.steps[S.cur]=0;save();render()}
+  else if(t.id==="reset"){if(confirm("Hapus semua progres dan mulai dari awal?")){S={unlocked:0,cur:0,steps:[0,0,0,0]};save();render()}}
+  else if(t.classList.contains("opt")&&!answered&&!t.classList.contains("bad")){
+    var c2=CH[S.cur],q=c2.quiz[S.steps[S.cur]-c2.cards.length],j=+t.dataset.j,fb=$("fb");
+    if(j===q.a){answered=true;t.classList.add("ok");fb.innerHTML='<div class="fb ok"><b>Benar.</b> '+q.e+'</div>';$("next").disabled=false}
+    else{t.classList.add("bad");t.disabled=true;fb.innerHTML='<div class="fb bad">Belum tepat. Baca kartu lagi, lalu coba pilihan lain.</div>'}
+  }
+});
+var PDF="https://drive.google.com/file/d/1MR5EiIagXqXzVeU13cGs0oHGj_sPHoYd/preview",loaded=false,rd=$("rd");
+function inFs(){return !!document.fullscreenElement||rd.classList.contains("fs")}
+function updFs(){$("fsb").textContent=inFs()?"Keluar layar penuh":"Layar penuh"}
+function exitFs(){rd.classList.remove("fs");if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();updFs()}
+function toggleFs(){
+  if(inFs()){exitFs();return}
+  if(rd.requestFullscreen){rd.requestFullscreen().then(updFs,function(){rd.classList.add("fs");updFs()})}
+  else{rd.classList.add("fs");updFs()}
+}
+function route(){
+  var on=location.hash==="#pdf";
+  if(!on)exitFs();
+  $("modview").hidden=on;$("pdfview").hidden=!on;
+  if(on&&!loaded){loaded=true;$("pdff").src=PDF}
+  window.scrollTo(0,0);
+}
+$("fsb").addEventListener("click",toggleFs);
+document.addEventListener("fullscreenchange",updFs);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&rd.classList.contains("fs"))exitFs()});
+window.addEventListener("hashchange",route);
+render();route();
+</script>
+</body>
+</html>
